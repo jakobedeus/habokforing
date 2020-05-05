@@ -1,19 +1,37 @@
 import React from "react"
 import styled from "styled-components"
+import paperstack from "../images/paperstack.png"
 
 const Heroes = styled.section`
   background-color: ${props => props.theme.colors.main};
-  margin-bottom: 1.45rem;
-  height: 40vh;
+  margin-bottom: 4rem;
+  height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   padding-top: 80px;
+
+  img {
+    margin-right: 4rem;
+  }
+
+  h1 {
+    font-size: 34px;
+    line-height: 1.4;
+  }
 `
 
-const Hero = ({ children }) => {
-  return <Heroes>{children}</Heroes>
+const Hero = () => {
+  return (
+    <Heroes>
+      {" "}
+      <img src={paperstack} alt="" />
+      <h1>
+        Gör det du är bra på <br></br>lämna ekonomijobbet till oss!
+      </h1>
+    </Heroes>
+  )
 }
 
 export default Hero
