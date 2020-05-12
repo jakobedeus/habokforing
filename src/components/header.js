@@ -13,6 +13,10 @@ import {
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons"
 
+const StyledLink = styled(Link)`
+  font-size: 1.4em;
+`
+
 const Headers = styled.header`
   margin-bottom: 1.45rem;
   position: fixed;
@@ -94,7 +98,7 @@ const Header = ({ siteTitle }) => {
   return (
     <Headers>
       <div className="container">
-        <Link to="/">{siteTitle}</Link>
+        <StyledLink to="/">{siteTitle}</StyledLink>
         <HeaderActions>
           <button>
             <a href="tel:+0854490006">
@@ -106,7 +110,7 @@ const Header = ({ siteTitle }) => {
           </button>
         </HeaderActions>
         {/* <button onClick={open}>Kontakta oss</button> */}
-        <Dialog isOpen={showDialog} onDismiss={close}>
+        <Dialog aria-label="Kontakta oss" isOpen={showDialog} onDismiss={close}>
           <Form></Form>
         </Dialog>
       </div>

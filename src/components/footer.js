@@ -32,10 +32,10 @@ const Footer = () => (
         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d8128.67392021713!2d18.0072936!3d59.3802157!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5b25c67f82d58ad8!2sH%20Andersson%20Bokf%C3%B6ringsbyr%C3%A5!5e0!3m2!1ssv!2sse!4v1588338745458!5m2!1ssv!2sse"
         width="100%"
         height="400"
-        frameborder="0"
-        allowfullscreen=""
+        frameBorder="0"
+        allowFullScreen=""
         aria-hidden="false"
-        tabindex="0"
+        tabIndex="0"
       ></iframe>
       <ul>
         <li>

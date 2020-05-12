@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import styled from "styled-components"
+import ReCaptcha from "./reCaptcha"
 
 const Forms = styled.form`
   display: flex;
@@ -48,9 +49,11 @@ const FormSubmitBtn = styled.button`
   }
 `
 
-// const validEmailRegex = RegExp(
-//   /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-// )
+const validEmailRegex = RegExp(
+  /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+)
+
+var isnum = /^\d+$/
 
 const Form = () => {
   const [name, setName] = React.useState("")
@@ -84,13 +87,54 @@ const Form = () => {
     setCompanyError("")
     return false
   }
+  const validateOrg = () => {
+    if (orgNr === "") {
+      setOrgNrError("Organisationsnummer måste vara ifyllt")
+      return true
+    }
+    setOrgNrError("")
+    return false
+  }
+  const validatePhone = () => {
+    if (isnum.test(phone) === false) {
+      setPhoneError("Ange ett giltligt telefonnummer")
+      return true
+    }
+    setPhoneError("")
+    return false
+  }
+  const validateEmail = () => {
+    if (validEmailRegex.test(email) === false) {
+      setEmailError("Ange en giltlig e-post")
+      return true
+    }
+    setEmailError("")
+    return false
+  }
 
-  // useEffect(() => {
-  //   setDisabled(!validateName && !validateCompany)
-  // }, [name, company])
+  useEffect(() => {
+    if (
+      name !== "" &&
+      company !== "" &&
+      orgNr !== "" &&
+      phone !== "" &&
+      isnum.test(phone) &&
+      validEmailRegex.test(email) === true
+    ) {
+      setDisabled(false)
+    } else {
+      setDisabled(true)
+    }
+  }, [name, company, orgNr, phone, email])
+
+  const onSubmit = event => {
+    event.preventDefault()
+    console.log(event)
+  }
 
   return (
-    <Forms>
+    <Forms onSubmit={onSubmit}>
+      <h2>Fyll i formuläret så återkommer vi så snabbt vi kan.</h2>
       <FormGroup>
         <label htmlFor="name">Namn:</label>
         <input
@@ -120,6 +164,7 @@ const Form = () => {
           type="text"
           value={orgNr}
           onChange={e => setOrgNr(e.target.value)}
+          onBlur={validateOrg}
         />
         {orgNrError && <span>{orgNrError}</span>}
       </FormGroup>
@@ -130,6 +175,7 @@ const Form = () => {
           type="tel"
           value={phone}
           onChange={e => setPhone(e.target.value)}
+          onBlur={validatePhone}
         />
         {phoneError && <span>{phoneError}</span>}
       </FormGroup>
@@ -140,13 +186,11 @@ const Form = () => {
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
+          onBlur={validateEmail}
         />
         {emailError && <span>{emailError}</span>}
       </FormGroup>
-
-      <FormSubmitBtn type="submit" disabled={isDisabled}>
-        Skicka
-      </FormSubmitBtn>
+      <FormSubmitBtn disabled={isDisabled}>Skicka</FormSubmitBtn>
     </Forms>
   )
 }
