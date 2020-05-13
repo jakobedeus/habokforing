@@ -7,8 +7,12 @@ const Footers = styled.footer`
   margin-top: 4rem;
 
   .container {
-    align-items: center;
-    display: flex;
+    display: block;
+
+    @media (min-width: 768px) {
+      align-items: center;
+      display: flex;
+    }
   }
 
   ul {
@@ -16,11 +20,23 @@ const Footers = styled.footer`
     text-decoration: none;
     list-style: none;
     flex: 1;
-    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    margin: 0;
+
+    @media (min-width: 768px) {
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 0;
+    }
   }
 
   iframe {
-    flex: 2;
+    flex: 1;
     margin: 0;
   }
 `

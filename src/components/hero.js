@@ -4,16 +4,26 @@ import paperstack from "../images/paperstack.png"
 
 const Heroes = styled.section`
   background-color: ${props => props.theme.colors.main};
-  margin-bottom: 4rem;
+  margin-bottom: 2.4rem;
   height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   padding-top: 80px;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    margin-bottom: 4rem;
+  }
 
   img {
-    margin-right: 4rem;
+    margin-right: 0;
+
+    @media (min-width: 768px) {
+      margin-right: 4rem;
+    }
   }
 
   h1 {

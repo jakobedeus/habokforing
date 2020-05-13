@@ -21,9 +21,14 @@ const Headers = styled.header`
   margin-bottom: 1.45rem;
   position: fixed;
   width: 100%;
+  padding: 0 20px;
   z-index: 1;
   filter: drop-shadow(0 0 10px gray);
   background-color: white;
+
+  @media (min-width: 768px) {
+    padding: 0;
+  }
 
   a {
     color: ${props => props.theme.colors.main};
@@ -48,6 +53,17 @@ const Headers = styled.header`
     display: flex;
     height: 80px;
     justify-content: space-between;
+  }
+`
+
+const StyledDialog = styled(Dialog)`
+  width: 90vw;
+
+  @media (min-width: 768px) {
+    width: 70vw;
+  }
+  @media (min-width: 1024px) {
+    width: 50vw;
   }
 `
 
@@ -110,9 +126,13 @@ const Header = ({ siteTitle }) => {
           </button>
         </HeaderActions>
         {/* <button onClick={open}>Kontakta oss</button> */}
-        <Dialog aria-label="Kontakta oss" isOpen={showDialog} onDismiss={close}>
+        <StyledDialog
+          aria-label="Kontakta oss"
+          isOpen={showDialog}
+          onDismiss={close}
+        >
           <Form></Form>
-        </Dialog>
+        </StyledDialog>
       </div>
     </Headers>
   )
