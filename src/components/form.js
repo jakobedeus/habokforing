@@ -1,6 +1,5 @@
 import React, { useEffect } from "react"
 import styled from "styled-components"
-import ReCaptcha from "./reCaptcha"
 
 const Forms = styled.form`
   display: flex;
